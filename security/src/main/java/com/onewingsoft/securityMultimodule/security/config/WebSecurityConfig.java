@@ -5,10 +5,7 @@ import com.onewingsoft.securityMultimodule.security.providers.JwtLoginAuthentica
 import com.onewingsoft.securityMultimodule.security.providers.JwtTokenAuthenticationProvider;
 import com.onewingsoft.securityMultimodule.security.utils.JwtFilterBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -49,19 +46,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtLoginAuthenticationProvider loginAuthenticationProvider;
     private final JwtTokenAuthenticationProvider tokenAuthenticationProvider;
     private final LogoutHandler logoutHandler;
-
-    @Autowired
-    private JwtFilterBuilder jwtFilterBuilder;
+    private final JwtFilterBuilder jwtFilterBuilder;
 
     @Autowired
     public WebSecurityConfig(CorsFilter corsFilter, AuthenticationEntryPoint authenticationEntryPoint,
             JwtLoginAuthenticationProvider loginAuthenticationProvider,
-            JwtTokenAuthenticationProvider tokenAuthenticationProvider, LogoutHandler logoutHandler) {
+            JwtTokenAuthenticationProvider tokenAuthenticationProvider, LogoutHandler logoutHandler,
+            @Lazy JwtFilterBuilder jwtFilterBuilder) {
         this.corsFilter = corsFilter;
         this.authenticationEntryPoint = authenticationEntryPoint;
         this.loginAuthenticationProvider = loginAuthenticationProvider;
         this.tokenAuthenticationProvider = tokenAuthenticationProvider;
         this.logoutHandler = logoutHandler;
+        this.jwtFilterBuilder = jwtFilterBuilder;
     }
 
     @Override
