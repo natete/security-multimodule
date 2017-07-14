@@ -27,7 +27,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource(value = { "classpath:jdbc.properties" })
 @ComponentScan(value = { "com.onewingsoft.securityMultimodule.persistence" })
-@EnableJpaRepositories(basePackages = "com.onewingsoft.securityMultimodule.repository")
+@EnableJpaRepositories(basePackages = "com.onewingsoft.securityMultimodule.app.repository")
 @EnableTransactionManagement
 public class JdbcConfig {
 
@@ -70,7 +70,7 @@ public class JdbcConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
 
         entityManagerFactory.setDataSource(dataSource());
-        entityManagerFactory.setPackagesToScan("com.emergya.sss3e.repository.model");
+        entityManagerFactory.setPackagesToScan("com.onewingsoft.securityMultimodule.app.model");
 
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
 

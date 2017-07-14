@@ -4,7 +4,6 @@ package com.onewingsoft.securityMultimodule.persistence.commons.props;
  * Mapping keys in the property resource jdbc.properties
  *
  * @author iiglesias
- *
  */
 class JdbcPropsKeys {
 

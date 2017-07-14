@@ -35,7 +35,7 @@ import java.util.Set;
 @Configuration
 @EnableWebMvc
 @EnableSwagger2
-@PropertySource(value = { "classpath:app.properties" })
+@PropertySource(value = { "classpath:swagger.properties" })
 @ComponentScan(value = { "com.onewingsoft.securityMultimodule.swagger" })
 public class SwaggerConfig extends WebMvcConfigurerAdapter {
 
@@ -65,7 +65,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
     public Docket api() {
 
         Docket docket = new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
-                                                               .paths(PathSelectors.any()).build();
+                .paths(PathSelectors.any()).build();
 
         // Custom methods response messages
 
@@ -88,11 +88,11 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
         // Custom Information
 
         docket.apiInfo(new ApiInfo(appPropsValues.getSwaggerInfoTitle(), appPropsValues.getSwaggerInfoDescription(),
-                                   appPropsValues.getSwaggerInfoVersion(), appPropsValues
-                                           .getSwaggerInfoTermsOfServiceUrl(), new Contact(
+                appPropsValues.getSwaggerInfoVersion(), appPropsValues
+                .getSwaggerInfoTermsOfServiceUrl(), new Contact(
                 appPropsValues.getSwaggerInfoContactName(), appPropsValues.getSwaggerInfoContactUrl(),
                 appPropsValues.getSwaggerInfoContactEmail()), appPropsValues.getSwaggerInfoLicense(),
-                                   appPropsValues.getSwaggerInfoLicenseURL(), new ArrayList<>()));
+                appPropsValues.getSwaggerInfoLicenseURL(), new ArrayList<>()));
 
         return docket;
     }
